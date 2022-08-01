@@ -1,7 +1,14 @@
 let number = 0;
 let string = '';
+const body = document.querySelector("body");
 
-setInterval(fizzbuzz, 1000);
+addEventListener('keyup', (e) => {
+  if(e.key=="Enter") {
+    fizzbuzz();
+    body.style.backgroundColor = randomHexColor();
+    console.log(randomHexColor());
+  }
+});
 
 function fizzbuzz() {
   number++;
@@ -22,7 +29,26 @@ function fizzbuzz() {
   utterance.pitch = Math.random()*2;
   speechSynthesis.speak(utterance);
 
-  document.querySelector("span#number").innerHTML = string;
+  document.querySelector("span#number").innerHTML = string; 
+}
 
-  
+function randomInteger(max) {
+  return Math.floor(Math.random()*(max + 1));
+}
+
+function randomRgbColor() {
+  let r = randomInteger(255);
+  let g = randomInteger(255);
+  let b = randomInteger(255);
+  return [r,g,b];
+}
+
+function randomHexColor() {
+  let [r,g,b] =randomRgbColor();
+
+  let hr = r.toString(16).padStart(2, '0');
+  let hg = g.toString(16).padStart(2, '0');
+  let hb = b.toString(16).padStart(2, '0');
+
+  return "#" + hr + hg + hb;
 }
