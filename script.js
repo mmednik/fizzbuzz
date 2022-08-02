@@ -11,6 +11,7 @@ addEventListener('keyup', (e) => {
 });
 
 function fizzbuzz() {
+  string = '';
   number++;
 
   if(number>100) {
@@ -18,10 +19,14 @@ function fizzbuzz() {
   }
   
   if (number%3==0) {
-    string = 'fizz';
-  } else if (number%5==0) {
-    string = 'buzz';
-  } else {
+    string += 'fizz';
+  }
+  
+  if (number%5==0) {
+    string += 'buzz';
+  }
+  
+  if (!string.length) {
     string = number;
   }
 
